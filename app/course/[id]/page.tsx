@@ -30,11 +30,8 @@ const iconMap: Record<string, any> = {
   Plane,
 };
 
-export default function CoursePage({
-  params,
-}: {
-  params: { id: string };
-}) {
+// ⭐ FIX: Safe typing for Next.js 16 dynamic params
+export default function CoursePage({ params }: { params: Record<string, string> }) {
   const courseId = params.id;
   const course = coursesData.find((c) => c.id === courseId);
 
@@ -107,7 +104,6 @@ export default function CoursePage({
               <div>
                 <p
                   className="font-mono text-sm text-muted-foreground uppercase tracking-wider mb-1"
-                  data-testid={`text-course-code-${course.id}`}
                 >
                   {course.code}
                 </p>
@@ -116,7 +112,6 @@ export default function CoursePage({
                   style={{
                     fontSize: "clamp(2.5rem, 5vw, 3.75rem)",
                   }}
-                  data-testid={`text-course-name-${course.id}`}
                 >
                   {course.name}
                 </h1>
@@ -206,6 +201,7 @@ export default function CoursePage({
           </div>
 
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 mb-12">
+            {/* What You'll Learn */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -245,6 +241,7 @@ export default function CoursePage({
               </div>
             </motion.div>
 
+            {/* Outcomes */}
             <motion.div
               initial={{ opacity: 0, x: 30 }}
               animate={{ opacity: 1, x: 0 }}
@@ -285,6 +282,7 @@ export default function CoursePage({
             </motion.div>
           </div>
 
+          {/* CTA */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}
             animate={{ opacity: 1, y: 0 }}
@@ -342,6 +340,3 @@ export default function CoursePage({
     </div>
   );
 }
-
-
-
