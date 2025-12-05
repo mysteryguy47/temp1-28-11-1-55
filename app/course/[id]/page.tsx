@@ -31,7 +31,7 @@ const iconMap: Record<string, any> = {
 };
 
 // ⭐ FIX: Safe typing for Next.js 16 dynamic params
-export default function CoursePage({ params }: { params: Record<string, string> }) {
+export default function CoursePage({ params }: any) {
   const courseId = params.id;
   const course = coursesData.find((c) => c.id === courseId);
 
@@ -340,3 +340,4 @@ export default function CoursePage({ params }: { params: Record<string, string> 
     </div>
   );
 }
+
